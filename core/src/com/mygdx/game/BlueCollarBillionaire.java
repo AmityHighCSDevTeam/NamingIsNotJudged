@@ -1,33 +1,27 @@
 package com.mygdx.game;
 
-import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import screens.MenuScreen;;
 
-public class BlueCollarBillionaire extends ApplicationAdapter {
-	SpriteBatch batch;
-	Texture img;
-	
+//extends game instead to make multiple screens
+public class BlueCollarBillionaire extends Game
+{
+	// public so screens can access it
+	public SpriteBatch batch;
+
 	@Override
-	public void create () {
+	public void create()
+	{
 		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+		setScreen(new MenuScreen(this));
 	}
 
 	@Override
-	public void render () {
-		Gdx.gl.glClearColor(1, 0, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		batch.begin();
-		batch.draw(img, 0, 0);
-		batch.end();
+	public void render()
+	{
+		// renders to whatever screen is active
+		super.render();
 	}
-	
-	@Override
-	public void dispose () {
-		batch.dispose();
-		img.dispose();
-	}
+
 }

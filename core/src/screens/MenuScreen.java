@@ -15,12 +15,14 @@ public class MenuScreen implements Screen
 {
 	// imports the class
 	private BlueCollarBillionaire game;
-	Texture button2;
+	Texture play;
+	Texture exit;
 
 	public MenuScreen(BlueCollarBillionaire game)
 	{
 		this.game = game;
-		button2 = new Texture("badlogic.jpg");
+		play = new Texture("play.png");
+		exit = new Texture("exit.png");
 	}
 
 	@Override
@@ -36,18 +38,28 @@ public class MenuScreen implements Screen
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		game.batch.begin();
 		Vector2 tmp = new Vector2(Gdx.input.getX(),Gdx.input.getY());
-		int buttonx = 10;
-		int buttony = 10;
-		game.batch.draw(button2, buttonx, buttony);
-		Rectangle bounds = new Rectangle(buttonx,(768 - button2.getHeight()) - buttony,button2.getWidth(),button2.getHeight());
-		if(bounds.contains(tmp))
+		int playx = (1366/2) - (play.getWidth()/2);
+		int playy = 766/2;
+		game.batch.draw(play, playx, playy);
+		Rectangle playbounds = new Rectangle(playx,(768 - play.getHeight()) - playy,play.getWidth(),play.getHeight());
+		if(playbounds.contains(tmp))
 		{
 			if(Gdx.input.isButtonPressed(Input.Buttons.LEFT))
 			{
 				game.setScreen(new PlayScreen(game));
 			}
 		}
-		
+		int exitx = (1366/2) - (play.getWidth()/2);
+		int exity = (766/2)/2;
+		game.batch.draw(exit, exitx, exity);
+		Rectangle exitbounds = new Rectangle(exitx,(768 - exit.getHeight()) - exity,exit.getWidth(),exit.getHeight());
+		if(exitbounds.contains(tmp))
+		{
+			if(Gdx.input.isButtonPressed(Input.Buttons.LEFT))
+			{
+				Gdx.app.exit();
+			}
+		}
 		game.batch.end();
 		
 	}
@@ -76,8 +88,7 @@ public class MenuScreen implements Screen
 	@Override
 	public void dispose()
 	{
-		// TODO Auto-generated method stub
-
+		Gdx.app.exit();
 	}
 
 	@Override

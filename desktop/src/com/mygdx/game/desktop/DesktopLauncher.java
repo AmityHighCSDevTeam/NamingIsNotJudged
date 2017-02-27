@@ -13,6 +13,7 @@ public class DesktopLauncher
 		config.resizable = false;
 		config.width = 1366;
 		config.height = 768;
+		config.forceExit = true;
 		new LwjglApplication(new BlueCollarBillionaire(), config);
 
 	}

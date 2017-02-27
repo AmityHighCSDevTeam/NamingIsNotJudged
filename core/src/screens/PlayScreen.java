@@ -1,13 +1,18 @@
 package screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.BlueCollarBillionaire;
 
 public class PlayScreen implements Screen
 {
 	private BlueCollarBillionaire game;
+	
 	
 	public PlayScreen(BlueCollarBillionaire game)
 	{
@@ -26,6 +31,10 @@ public class PlayScreen implements Screen
 	{
 		Gdx.gl.glClearColor(0, 180, 180, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		game.batch.begin();
+		Vector2 tmp = new Vector2(Gdx.input.getX(),Gdx.input.getY());
+		
+		game.batch.end();
 	}
 	
 	@Override
